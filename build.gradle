@@ -1,2 +1,19 @@
+plugins {
+    id 'groovy'
+}
+
 group 'de.dfki.mary'
 version '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'de.dfki.mary', name: 'marytts-runtime', version: '5.2'
+    testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+}
+
+test {
+    useTestNG()
+}
