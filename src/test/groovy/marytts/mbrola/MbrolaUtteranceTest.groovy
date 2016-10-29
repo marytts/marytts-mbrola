@@ -10,7 +10,8 @@ class MbrolaUtteranceTest {
                           |b 20 (0,40)
                           |c 15
                           |d 5 (10,50)(80,75)
-                          |'''.stripMargin().trim()
+                          |#
+                          |'''.stripMargin()
         def utterance = new MbrolaUtterance(
                 new MbrolaPhone(phone: 'a', duration: 10),
                 new MbrolaPhone(phone: 'b', duration: 20, frequencies: [0: 40]),

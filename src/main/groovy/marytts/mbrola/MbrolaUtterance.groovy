@@ -10,6 +10,6 @@ class MbrolaUtterance {
 
     @Override
     String toString() {
-        phones.collect { it.toString() }.join('\n')
+        phones.collect { it.toString() }.join('\n') + '\n#\n'
     }
 }
