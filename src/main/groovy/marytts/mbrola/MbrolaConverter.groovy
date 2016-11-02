@@ -25,8 +25,16 @@ class MbrolaConverter extends InternalModule {
         def doc = data.getDocument()
         def xmlStr = MaryDomUtils.serializeToString(doc)
         log.debug "MaryXML input:\n$xmlStr"
-        def xml = new XmlSlurper().parseText(xmlStr)
 
+        def mbrolaUtterance = convert(xmlStr)
+        log.debug "MBROLA output:\n$mbrolaUtterance"
+
+        data.plainText = mbrolaUtterance.toString()
+        return data
+    }
+
+    MbrolaUtterance convert(String xmlStr) {
+        def xml = new XmlSlurper().parseText(xmlStr)
         def mbrolaPhones = []
         log.debug 'processing XML elements'
         xml.depthFirst().each { node ->
@@ -56,10 +64,6 @@ class MbrolaConverter extends InternalModule {
                     break
             }
         }
-        def mbrolaUtterance = new MbrolaUtterance(*mbrolaPhones)
-        log.debug "MBROLA output:\n$mbrolaUtterance"
-
-        data.plainText = mbrolaUtterance.toString()
-        return data
+        return new MbrolaUtterance(*mbrolaPhones)
     }
 }
