@@ -55,3 +55,7 @@ task integrationTest(type: Test, group: 'Verification', description: 'Runs the i
 tasks.withType(Test) {
     useTestNG()
 }
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
